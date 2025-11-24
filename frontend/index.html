@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>AI Health Companion</title>
+  <link rel="icon" href="./health.jpg" type="image/x-icon">
 
   <style>
     /* ============================
@@ -164,8 +165,13 @@
           body: JSON.stringify(data)
         });
 
-        const msg = await res.text();
-        document.getElementById('result').innerText = msg;
+        const result = await res.json();
+
+        if (result.success) {
+          alert("Patient details submitted successfully!");
+        } else {
+          alert("Failed to submit patient details.");
+        }
 
       } catch (err) {
         document.getElementById('result').innerText = "Failed to connect to server.";
